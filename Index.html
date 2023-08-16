@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body onload="makeBubble();">
+    <div id="main">
+        <div id="panel">
+            <div id="ptop">
+                <div class="elem">
+                    <h3>Hit</h3>
+                    <div class="hitbox"></div>
+                </div>
+                <div class="elem">
+                    <h3>Timer</h3>
+                    <div class="timebox">60</div>
+                </div>
+                <div class="elem">
+                    <h3>Score</h3>
+                    <div class="box">0</div>
+                </div>
+            </div>
+            <div id="pbtm">
+                <!-- <div id="bubble"></div> -->
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    let Score = 0;
+    let i = 6;
+    let controller = 0;
+    function makeBubble()
+    {
+    let html = '';
+    for(let i = 0 ; i <= 159 ; i++){
+        var rn = Math.trunc(Math.random()*10);
+        html += `<div onclick = 'increaseval(${rn});' id="bubble">${rn}</div>`
+    }
+    document.querySelector('#pbtm').innerHTML = html;
+    }
+    let timer;
+    function runTimer() {
+        if (timer) {
+            clearInterval(timer);
+            i = 60; 
+            document.querySelector('.timebox').innerText = i;
+
+        }
+
+        timer = setInterval(function() {
+            if (i > 0) {
+                i--;
+                document.querySelector('.timebox').innerText = i;
+            } else {
+                clearInterval(timer);
+                document.querySelector('.hitbox').textContent = -1;
+                document.querySelector('#pbtm').innerHTML = `<div class = 'GameOver'><h1 style = 'color:white; border-bottom: 2px solid rgb(44, 111, 44); padding:3px ; border-radius:5px; margin-bottom : 15px;
+                border-top:2px solid rgb(44, 111, 44);
+                '>Game Over</h1>  <h2 style = 'color:white; border-bottom: 2px solid rgb(44, 111, 44); padding:3px ; border-radius:5px;border-top:2px solid rgb(44, 111, 44);
+                ' onclick = "reloadfunc();" class = 'reload'>Click to Play again</h2> </div>`;
+            }
+        }, 1000);
+    }
+    function reloadfunc(){
+        Score = 0;
+            document.querySelector('.box').innerText = Score;
+        runTimer();
+        getHit();
+        makeBubble();
+    }
+    runTimer();
+    let value = 0;
+    function getHit(){
+        value = (Math.trunc(Math.random()*10));
+        document.querySelector('.hitbox').textContent = value;
+    }
+    getHit();
+    function increaseval(ran){
+        console.log(ran);
+        console.log(value);
+        if(ran == value){
+            Score += 10;
+            document.querySelector('.box').innerText = Score;
+            getHit();
+            makeBubble();
+            runTimer();
+        }else{
+            document.querySelector('#pbtm').innerHTML = `<div class = 'GameOver'><h1 style = 'color:white; border-bottom: 2px solid rgb(44, 111, 44); padding:3px ; border-radius:5px; margin-bottom : 15px;
+                border-top:2px solid rgb(44, 111, 44);
+                '>Game Over</h1>  <h2 style = 'color:white; border-bottom: 2px solid rgb(44, 111, 44); padding:3px ; border-radius:5px;border-top:2px solid rgb(44, 111, 44);
+                ' onclick = "reloadfunc();" class = 'reload'>Click to Play again</h2> </div>`;
+            document.querySelector('.timebox').innerText = 0;
+            clearInterval(timer)
+            document.querySelector('.hitbox').textContent = -1;
+        }
+    }
+</script>
+</html>

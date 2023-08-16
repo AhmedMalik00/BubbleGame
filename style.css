@@ -1,0 +1,96 @@
+*{
+    margin: 0px;
+    user-select: none;
+    padding: 0px;
+    box-sizing: border-box;
+}
+html , body{
+    width: 100%;
+    height: 100%;
+}
+#main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(155, 184, 155);
+}
+#panel{
+    border-radius: 10px;
+    width: 80%;
+    height: 80%;
+    background-color: white;
+    overflow: hidden;
+}
+#ptop{
+    padding: 0% 30%;
+    width: 100%;
+    height: 100px;
+    background-color: rgb(44, 111, 44);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.elem{
+    align-items: center;
+    display: flex;
+    color: white;
+    margin: 5px;
+    gap: 5px;
+}
+.box ,.hitbox, .timebox{
+    color: black;
+    font-size: 20px;
+    padding: 10px 20px;
+    font-weight: 700;
+    border-radius: 5px;
+    background-color: white;
+}
+
+@media screen and (max-width: 550px) {
+    #ptop{
+        padding: 0px 10px;
+    }
+    .box , .hitbox , .timebox{
+        font-size: 15px;
+        padding: 5px 10px;
+    }
+    #panel{
+        height: 83%;
+    }
+}
+#pbtm{
+    width: 100%;
+    height: calc(100% - 100px);
+    background-color: black;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+#bubble{
+    cursor: pointer;
+    /* margin: 5px; */
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgb(44, 111, 44);
+    color: white;
+    text-align: center;
+    line-height: 40px;
+}
+.GameOver{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    
+}
+.reload{
+    cursor: pointer;
+}
+.reload:hover{
+font-size: 25px;
+}
